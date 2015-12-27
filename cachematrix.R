@@ -32,13 +32,16 @@
 ##
 ## This program writes the following functions:
 ##
-##1.  `makeCacheMatrix`: This function creates a special
+## 1.  `makeCacheMatrix`: This function creates a special
 ## "matrix" object that can cache its inverse.
 ##
 ## 2.  `cacheSolve`: This function computes the inverse of the ## special "matrix" returned by `makeCacheMatrix` above. If
-## the inverse has already been calculated (and the matrix has ## not changed), then `cacheSolve` should retrieve the inverse ## from the cache; it first checks to see if the inverse has ## already been calculated. If so, it `get`s the inverse from ## the cache and skips the computation. Otherwise, it
-## calculates the inverse of the data and sets the value of
-## the inverse in the cache via the `cacheSolve` function.
+## the inverse has already been calculated (and the matrix
+## has not changed), then `cacheSolve` should retrieve the
+## inverse from the cache; it first checks to see if the
+## inverse has already been calculated. If so, it `get`s the
+## inverse from the cache and skips the computation.
+## Otherwise, it calculates the inverse of the data and sets ## the value of the inverse in the cache via the `cachesolve` ## function.
 ##
 ## Computing the inverse of a square matrix can be done with ## the `solve` function in R. For example, if `X` is a square ## invertible matrix, then solve(X)` returns its inverse.
 ##
@@ -64,7 +67,9 @@ makeCacheMatrix <- function(x = matrix(nrow, ncol)) {
 
 ##
 ## Write a short comment describing this function
-## The function creates a square matrix of dimension nrows and ## ncols, and it creates a function called 'set' which uses
+## `makeCacheMatrix`: This function creates a special
+## "matrix" object that can cache its inverse.
+##The function creates a square matrix of dimension nrows and ## ncols, and it creates a function called 'set' which uses
 ## the `<<-` operator to assign a value to matrix y  and m
 ## that is in an environment that is different from the
 ## environment inside of the '{function}'.
@@ -76,7 +81,7 @@ makeCacheMatrix <- function(x = matrix(nrow, ncol)) {
 ## place of m.
 ##
 ##
-cachesolve <- function(x, ...) {
+cacheSolve <- function(x, ...) {
                 solve(makeCacheMatrix)
                 m <- x$getsolve()
                 if(!is.null(m)) {
@@ -88,5 +93,13 @@ cachesolve <- function(x, ...) {
                 x$setsolve(m)
                 m
 }
+##
 ## Return a matrix that is the inverse of 'makeCacheMatrix'
-
+## `cacheSolve`: This function computes the inverse of the
+## special "matrix" returned by `makeCacheMatrix` above. If
+## the inverse has already been calculated (and the matrix
+## has not changed), then `cacheSolve` should retrieve the
+## inverse from the cache; it first checks to see if the
+## inverse has already been calculated. If so, it `get`s the ## inverse from the cache and skips the computation.
+## Otherwise, it calculates the inverse of the data and sets ## the value of the inverse in the cache via the `cacheSolve` ## function.
+##
